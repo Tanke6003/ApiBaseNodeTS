@@ -22,7 +22,7 @@ class UserController {
                 password: envs.DB_PASSWORD,
                 database: envs.DB_NAME
             });
-            const users = await db.executeQuery("SELECT * FROM users");
+            const users = await db.executeQuery("SELECT * FROM users; ");
             res.json(users);
         } catch (error) {
             console.error(error);

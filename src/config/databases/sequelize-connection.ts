@@ -34,8 +34,7 @@ export class SequelizeConnection {
                 replacements: parameters
             }
             );
-            console.log(results);
-            return results; // Devuelve todos los resultados
+            return results; 
         } catch (error: any) {
             console.error(error);
             throw new Error(`Error executing query: ${error.message}`);
