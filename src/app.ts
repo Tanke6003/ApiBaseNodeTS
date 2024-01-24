@@ -1,6 +1,11 @@
-
+import { Server } from "./presentarion/server";
+import { envs } from './config/envs';
 const main:Function = ()=>{
-    console.log("Hello World!!");
+    const server:Server = new Server(envs.PORT);
+    server.run();
 }
 
-main();
+(async()=> {
+    main();
+  })();
+  
