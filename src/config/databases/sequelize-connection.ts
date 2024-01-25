@@ -1,4 +1,4 @@
-import { Sequelize, Options } from "sequelize";
+import { Sequelize, Options, QueryOptions } from "sequelize";
 
 export interface SequelizeConnectionConfig {
     dialect: string;
@@ -8,8 +8,9 @@ export interface SequelizeConnectionConfig {
     password: string;
     database: string;
 }
+
 export class SequelizeConnection {
-    connection: Sequelize;
+    private connection: Sequelize;
 
     constructor(config: SequelizeConnectionConfig) {
         this.connection = new Sequelize(config as Options);
@@ -28,17 +29,18 @@ export class SequelizeConnection {
 
     async executeQuery(query: string, parameters?: any[]): Promise<any> {
         try {
-
-            const [results, metadata] = await this.connection.query(query
-                , {
-                replacements: parameters
-            }
-            );
-            return results; 
-        } catch (error: any) {
-            console.error(error);
+            const queryOptions: QueryOptions = {
+                replacements: parameters,
+            };
+            const [results, metadata] = await this.connection.query(query, queryOptions);
+            return results;
+        } catch (error:any) {
             throw new Error(`Error executing query: ${error.message}`);
         }
     }
-    
+
+    async close(): Promise<void> {
+        await this.connection.close();
+        console.log('Database connection closed.');
+    }
 }
