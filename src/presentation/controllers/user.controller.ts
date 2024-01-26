@@ -34,6 +34,20 @@ export class UserController{
             res.status(500).json({ error: 'Error al obtener el usuario por ID' });
         }
     }
+    createUser = async(req: Request, res: Response) =>{
+        const bodyreq = req.body;
+        console.log(bodyreq)
+    
+        try {
+            const result = await this.userServices.createUser(bodyreq.name)
+            if(!result)
+                throw new Error("No se pudo registrar al usuario")
+            return res.status(200).send();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: error});
+        }
+    }
     
 
 }

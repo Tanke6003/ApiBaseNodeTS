@@ -18,13 +18,21 @@ class UserModule {
   }
 
   private initializeDependencies() {
+    // const db = new MariaDBConnection({
+    //   dialect: 'mariadb',
+    //   host: envs.DB_HOST,
+    //   port: envs.DB_PORT,
+    //   username: envs.DB_USER,
+    //   password: envs.DB_PASSWORD,
+    //   database: envs.DB_NAME
+    // });
     const db = new MariaDBConnection({
-      dialect: 'mariadb',
-      host: envs.DB_HOST,
-      port: envs.DB_PORT,
-      username: envs.DB_USER,
-      password: envs.DB_PASSWORD,
-      database: envs.DB_NAME
+      dialect: 'mssql',
+      host: "127.0.0.1",
+      port: 1433,
+      username: "sa",
+      password: "SECRETPASS1!",
+      database: "test"
     });
     this.userRepository = new UserRepository(db);
     this.userServices = new UserServices(this.userRepository);
@@ -36,6 +44,7 @@ class UserModule {
   setRoutes(){
     this.router.get('/users', this.userController.getAllUsers);
     this.router.get('/users/:id',this.userController.getUserById);
+    this.router.post('/users',this.userController.createUser);
   }
 }
 

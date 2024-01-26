@@ -1,28 +1,29 @@
 import { UserRepository } from '../../infrastructure/user.repository';
-import { userDTO } from '../DTOs/user.DTO.interface';
-import { user } from '../../dominio/models/user.interface';
+import { UserDTO } from '../DTOs/user.DTO.interface';
+import { User } from '../../dominio/models/user.interface';
 
 
 export class UserServices{
     
-    userRepository:UserRepository
+    private userRepository:UserRepository
     constructor(userRepository:UserRepository){
         this.userRepository = userRepository
     }
 
-    async getAllUsers():Promise<Array<userDTO>>{
+    async getAllUsers():Promise<Array<UserDTO>>{
         try {
     
-            const users:user[] = await this.userRepository.getAllUsers();
+            const users:User[] = await this.userRepository.getAllUsers();
             return this.mapUsers(users);
-        } catch (error) {
+        } catch (error:any) {
             console.error(error);
+            throw new Error(`Error executing query: ${error.message}`);
             return [];
         }
 
     }
-    async getUserByID(id:number):Promise<userDTO|null>{
-        let user:user;
+    async getUserByID(id:number):Promise<UserDTO|null>{
+        let user:User;
         try {
     
             user = await this.userRepository.getUserByID(id);
@@ -33,11 +34,22 @@ export class UserServices{
         }
 
     }
+    async createUser(name:string):Promise<boolean>{
+        let result = false;
+        try {
+    
+            result = await this.userRepository.createUser(name);
+            return result
+        } catch (error) {
+            console.error(error);
+            return false ;
+        }
+    }
 
-    mapUsers(users:user[]):userDTO[]{
+    mapUsers(users:User[]):UserDTO[]{
 
         const usersDTO = users.map((user)=>{
-            const  userDto:userDTO = {id:user.id,name:user.name};
+            const  userDto:UserDTO = {id:user.id,name:user.name};
             return userDto;
         });
 
