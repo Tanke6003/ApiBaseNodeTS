@@ -1,4 +1,4 @@
-import { SequelizeConnection } from "../config/databases/sequelize-connection";
+import { SequelizeConnection } from "./config/databases/sequelize-connection";
 import { user } from "../dominio/models/user.interface";
 
 export class UserRepository {

@@ -14,7 +14,7 @@ export class SequelizeConnection {
 
     constructor(config: SequelizeConnectionConfig) {
         this.connection = new Sequelize(config as Options);
-        this.authenticate();
+        //this.authenticate();
     }
 
     async authenticate(): Promise<void> {

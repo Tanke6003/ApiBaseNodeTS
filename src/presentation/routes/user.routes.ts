@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { SequelizeConnection } from '../../config/databases/sequelize-connection';
-import { envs } from '../../config/envs';
+import { SequelizeConnection } from '../../infrastructure/config/databases/sequelize-connection';
+import { envs } from '../../infrastructure/config/envs';
 import { UserController } from '../controllers/user.controller';
 import { UserRepository } from '../../infrastructure/user.repository';
 import { UserServices } from '../../application/services/user.service';
@@ -34,7 +34,7 @@ class UserModule {
     return this.router;
   }
   setRoutes(){
-    this.router.get('/users',this.userController.getAllUsers);
+    this.router.get('/users', this.userController.getAllUsers);
   }
 }
 
