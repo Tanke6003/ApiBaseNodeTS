@@ -3,4 +3,8 @@ dist/
 .vscode/
 .env
 sql/
+<<<<<<< Updated upstream
 mariadb_data/
+=======
+mariadb_data/
+>>>>>>> Stashed changes

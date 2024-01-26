@@ -1,16 +1,16 @@
-import { user } from '../dominio/models/user.interface';
+import { User } from '../dominio/models/user.interface';
 import { IDBConnection } from "../dominio/interfaces/IDBConnection.interface";
 
 export class UserRepository {
-    db: IDBConnection;
+    private db: IDBConnection;
 
     constructor(cn: IDBConnection) {
         this.db = cn;
     }
 
-    async getAllUsers(): Promise<user[]> {
+    async getAllUsers(): Promise<User[]> {
         const userData = await this.db.executeQuery("SELECT * FROM users;");
-        const users: user[] = userData.map((data: any) => {
+        const users: User[] = userData.map((data: any) => {
             return {
                 id: data.id,
                 name:data.name
@@ -18,9 +18,20 @@ export class UserRepository {
         });
         return users;
     }
-    async getUserByID(id:number):Promise<user>{
+    async getUserByID(id:number):Promise<User>{
         const userData = await this.db.executeQuery("SELECT * FROM users WHERE id = ?;",[id]);
-        const user: user = userData[0] as user;
+        const user: User = userData[0] as User;
         return user;
+    }
+    async createUser(name:string):Promise<boolean>{
+        try{
+            await this.db.executeQuery("INSERT INTO users(name)VALUES(?)",[name])
+            return true;
+        }
+        catch(ex)
+        {
+            console.error(ex)
+            return false;
+        }
     }
 }

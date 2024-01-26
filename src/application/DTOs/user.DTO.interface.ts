@@ -1,5 +1,5 @@
 
-export interface userDTO{
+export interface UserDTO{
     id:number;
     name:string;
 }
