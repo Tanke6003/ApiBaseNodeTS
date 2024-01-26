@@ -1,11 +1,12 @@
-import express, {  Request, Response, NextFunction } from 'express';
+import express, {  Request, Response, NextFunction, Router } from 'express';
 import cors from 'cors';
-import { routes } from '../routes/index.routes';
+import { RouterModule } from './routes/index.routes';
 
 
 export class Server{
     private app = express();
     private readonly port:number;
+    private routes:Router[]=[]
     constructor(port:number){
         this.port = port;
         this.configureMiddleware();
@@ -18,7 +19,9 @@ export class Server{
         this.app.use(cors());
     }
     private configureRoutes() {
-        this.app.use(routes)
+        const routerModule = new RouterModule();
+        this.routes = routerModule.getRoutes();
+        this.app.use(this.routes);
     }
     private configureErrorHandling() {
         this.app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +31,7 @@ export class Server{
     }
     async run(){
         this.app.listen(this.port,()=>{
-            console.log(`this app is running on \n http://localhost:${this.port}`)
+            console.log(`this app is running on\n http://localhost:${this.port}`)
         })
     }
 }
