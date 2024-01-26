@@ -2,3 +2,5 @@ node_modules/
 dist/
 .vscode/
 .env
+sql/
+mariadb_data/
