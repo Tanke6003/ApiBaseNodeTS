@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SequelizeConnection } from '../../infrastructure/config/databases/sequelize-connection';
+import { MariaDBConnection } from '../../infrastructure/config/databases/mariadb.connection';
 import { envs } from '../../infrastructure/config/envs';
 import { UserController } from '../controllers/user.controller';
 import { UserRepository } from '../../infrastructure/user.repository';
@@ -18,7 +18,7 @@ class UserModule {
   }
 
   private initializeDependencies() {
-    const db = new SequelizeConnection({
+    const db = new MariaDBConnection({
       dialect: 'mariadb',
       host: envs.DB_HOST,
       port: envs.DB_PORT,
@@ -35,6 +35,7 @@ class UserModule {
   }
   setRoutes(){
     this.router.get('/users', this.userController.getAllUsers);
+    this.router.get('/users/:id',this.userController.getUserById);
   }
 }
 

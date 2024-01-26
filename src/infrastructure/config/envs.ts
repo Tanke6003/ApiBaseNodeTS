@@ -1,13 +1,11 @@
-// envs.ts
 import 'dotenv/config';
 import { get } from 'env-var';
 
 export const envs = {
   PORT: get('PORT').required().asPortNumber(),
-  PUBLIC_PATH: get('PUBLIC_PATH').default('public').asString(),
-  DB_HOST: process.env.MYSQL_HOST || 'localhost', // Ajustado el nombre de la variable
-  DB_PORT: process.env.MYSQL_PORT || 3306, // Ajustado el nombre de la variable
-  DB_USER: process.env.MYSQL_USER || 'root', // Ajustado el nombre de la variable
-  DB_PASSWORD: process.env.MYSQL_PASSWORD || 'tu_contraseña', // Ajustado el nombre de la variable
-  DB_NAME: process.env.MYSQL_DATABASE || 'tu_base_de_datos', // Ajustado el nombre de la variable
+  DB_HOST: get('MYSQL_HOST').required().asString(), 
+  DB_PORT: get('MYSQL_PORT').default(3306).asPortNumber(),
+  DB_USER: get('MYSQL_USER').required().asString(), 
+  DB_PASSWORD: get('MYSQL_PASSWORD').required().asString(),
+  DB_NAME: get('MYSQL_DATABASE').required().asString()
 };

@@ -18,22 +18,22 @@ export class UserController{
             res.status(500).json({ error: 'Error al obtener usuarios' });
         }
     }
-    // async getUserById(req: Request, res: Response) {
-    //     const userId = req.params.id;
+    getUserById = async(req: Request, res: Response) =>{
+        const userId = req.params.id;
     
-    //     try {
-    //         const user = await db.executeQuery("SELECT * FROM users WHERE id = ?;",[userId]);
+        try {
+            const user = await this.userServices.getUserByID(Number(userId));
     
-    //         if (user.length > 0) {
-    //             res.json(user[0]);
-    //         } else {
-    //             res.status(404).json({ error: 'Usuario no encontrado' });
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //         res.status(500).json({ error: 'Error al obtener el usuario por ID' });
-    //     }
-    // }
+            if (user) {
+                res.json(user);
+            } else {
+                res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Error al obtener el usuario por ID' });
+        }
+    }
     
 
 }

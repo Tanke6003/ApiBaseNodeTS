@@ -21,6 +21,18 @@ export class UserServices{
         }
 
     }
+    async getUserByID(id:number):Promise<userDTO|null>{
+        let user:user;
+        try {
+    
+            user = await this.userRepository.getUserByID(id);
+            return user;
+        } catch (error) {
+            console.error(error);
+            return null ;
+        }
+
+    }
 
     mapUsers(users:user[]):userDTO[]{
 

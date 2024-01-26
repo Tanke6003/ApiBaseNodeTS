@@ -1,4 +1,5 @@
 import { Sequelize, Options, QueryOptions } from "sequelize";
+import { IDBConnection } from "../../../dominio/interfaces/IDBConnection.interface";
 
 export interface SequelizeConnectionConfig {
     dialect: string;
@@ -9,7 +10,7 @@ export interface SequelizeConnectionConfig {
     database: string;
 }
 
-export class SequelizeConnection {
+export class MariaDBConnection  implements IDBConnection {
     private connection: Sequelize;
 
     constructor(config: SequelizeConnectionConfig) {
