@@ -26,7 +26,7 @@ export class UserServices{
         let user:User;
         try {
     
-            user = await this.userRepository.getUserByID(id);
+            user = await this.userRepository.getUserById(id);
             return user;
         } catch (error) {
             console.error(error);
@@ -34,11 +34,11 @@ export class UserServices{
         }
 
     }
-    async createUser(name:string):Promise<boolean>{
+    async createUser(user:User):Promise<boolean>{
         let result = false;
         try {
     
-            result = await this.userRepository.createUser(name);
+            result = await this.userRepository.createUser(user);
             return result
         } catch (error) {
             console.error(error);

@@ -31,7 +31,7 @@ export class Server{
     }
     async run(){
         this.app.listen(this.port,()=>{
-            console.log(`this app is running on\n http://localhost:${this.port}`)
+            console.log(`this app is running on\n http://localhost:${this.port}`);
         })
     }
 }

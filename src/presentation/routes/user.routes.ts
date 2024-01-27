@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import { MariaDBConnection } from '../../infrastructure/datasources/mariadb.connection';
+import { MariaDBConnection } from '../../infrastructure/config/mariadb.connection';
 import { envs } from '../../infrastructure/config/envs';
 import { UserController } from '../controllers/user.controller';
 import { UserRepository } from '../../infrastructure/user.repository';
 import { UserServices } from '../../application/services/user.service';
+import { UserMariaDBDataSource } from '../../infrastructure/datasources/user.mariadb.datasource';
+import { IUsersDataSource } from '../../dominio/interfaces/IUserDataSource.interface';
+import { UserMSSQLDataSource } from '../../infrastructure/datasources/user.mssql.datasource copy';
+import { MsSQLConnection } from '../../infrastructure/config/mssql.connection';
 
 class UserModule {
   private router:Router
@@ -18,23 +22,28 @@ class UserModule {
   }
 
   private initializeDependencies() {
-    // const db = new MariaDBConnection({
-    //   dialect: 'mariadb',
-    //   host: envs.DB_HOST,
-    //   port: envs.DB_PORT,
-    //   username: envs.DB_USER,
-    //   password: envs.DB_PASSWORD,
-    //   database: envs.DB_NAME
-    // });
-    const db = new MariaDBConnection({
+    const datasources:IUsersDataSource[] = [];
+    const dbmariadb = new MariaDBConnection({
+      dialect: 'mariadb',
+      host: envs.DB_HOST,
+      port: envs.DB_PORT,
+      username: envs.DB_USER,
+      password: envs.DB_PASSWORD,
+      database: envs.DB_NAME
+    });
+    const dbmssql = new MsSQLConnection({
       dialect: 'mssql',
       host: "127.0.0.1",
-      port: 1433,
+      port: 1434,
       username: "sa",
-      password: "SECRETPASS1!",
+      password: "EnGswUs3r19!",
       database: "test"
     });
-    this.userRepository = new UserRepository(db);
+    const userDataSource = new UserMariaDBDataSource(dbmariadb);
+    const userDataSource2 = new UserMSSQLDataSource(dbmssql);
+    datasources.push(userDataSource);
+    datasources.push(userDataSource2);
+    this.userRepository = new UserRepository(datasources);
     this.userServices = new UserServices(this.userRepository);
     this.userController = new UserController(this.userServices);
 }

@@ -39,7 +39,7 @@ export class UserController{
         console.log(bodyreq)
     
         try {
-            const result = await this.userServices.createUser(bodyreq.name)
+            const result = await this.userServices.createUser(bodyreq)
             if(!result)
                 throw new Error("No se pudo registrar al usuario")
             return res.status(200).send();
