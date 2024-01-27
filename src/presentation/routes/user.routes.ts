@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { MariaDBConnection } from '../../infrastructure/config/databases/mariadb.connection';
+import { MariaDBConnection } from '../../infrastructure/datasources/mariadb.connection';
 import { envs } from '../../infrastructure/config/envs';
 import { UserController } from '../controllers/user.controller';
 import { UserRepository } from '../../infrastructure/user.repository';

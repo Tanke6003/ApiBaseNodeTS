@@ -1,5 +1,5 @@
 import { Sequelize, Options, QueryOptions } from "sequelize";
-import { IDBConnection } from "../../../dominio/interfaces/IDBConnection.interface";
+import { IDBConnection } from "../../dominio/interfaces/IDBConnection.interface";
 
 export interface SequelizeConnectionConfig {
     dialect: string;
