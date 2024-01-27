@@ -6,7 +6,7 @@ import { UserRepository } from '../../infrastructure/user.repository';
 import { UserServices } from '../../application/services/user.service';
 import { UserMariaDBDataSource } from '../../infrastructure/datasources/user.mariadb.datasource';
 import { IUsersDataSource } from '../../dominio/interfaces/IUserDataSource.interface';
-import { UserMSSQLDataSource } from '../../infrastructure/datasources/user.mssql.datasource copy';
+import { UserMSSQLDataSource } from '../../infrastructure/datasources/user.mssql.datasource';
 import { MsSQLConnection } from '../../infrastructure/config/mssql.connection';
 
 class UserModule {
@@ -40,9 +40,9 @@ class UserModule {
       database: "test"
     });
     const userDataSource = new UserMariaDBDataSource(dbmariadb);
-    const userDataSource2 = new UserMSSQLDataSource(dbmssql);
+    //const userDataSource2 = new UserMSSQLDataSource(dbmssql);
     datasources.push(userDataSource);
-    datasources.push(userDataSource2);
+    //datasources.push(userDataSource2);
     this.userRepository = new UserRepository(datasources);
     this.userServices = new UserServices(this.userRepository);
     this.userController = new UserController(this.userServices);
