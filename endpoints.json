@@ -1,0 +1,22 @@
+[
+  [
+    {
+      "path": "/users",
+      "method": {
+        "get": true
+      }
+    },
+    {
+      "path": "/users/:id",
+      "method": {
+        "get": true
+      }
+    },
+    {
+      "path": "/users/create-user",
+      "method": {
+        "post": true
+      }
+    }
+  ]
+]

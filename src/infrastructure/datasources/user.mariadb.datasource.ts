@@ -22,5 +22,10 @@ export class UserMariaDBDataSource implements IUsersDataSource {
         const result = await this.db.executeQuery(query, [user.name]);
         return result;
     }
+    async updateUser(user:User) {
+        const query = 'UPDATE users SET name = ? WHERE id = ?';
+        const result = await this.db.executeQuery(query, [user.name, user.UserId]);
+        return result;
+    }
 }
 

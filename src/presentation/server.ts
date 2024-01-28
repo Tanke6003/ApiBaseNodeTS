@@ -1,6 +1,9 @@
 import express, {  Request, Response, NextFunction, Router } from 'express';
 import cors from 'cors';
 import { RouterModule } from './routes/index.routes';
+import { writeFileSync } from 'fs';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 
 export class Server{
@@ -12,15 +15,39 @@ export class Server{
         this.configureMiddleware();
         this.configureRoutes();
         this.configureErrorHandling();
+        this.createSwaggerSpec();
     }
 
     private configureMiddleware(){
         this.app.use(express.json());
         this.app.use(cors());
+        this.app.use(express.urlencoded({extended:false}));
+        this.app.use(express.static('public'));
     }
+
+    private createSwaggerSpec() {
+        const options = {
+          definition: {
+            openapi: '3.0.0',
+            info: {
+              title: 'Test API',
+              version: '0.0.1',
+            },
+          },
+          apis: ['./src/presentation/routes/*.ts'],
+        };
+    
+        const swaggerSpec = swaggerJsdoc(options);
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+      }
+    
+
     private configureRoutes() {
         const routerModule = new RouterModule();
         this.routes = routerModule.getRoutes();
+        this.app.get('/', (req: Request, res: Response) => {
+            res.redirect('/api-docs');
+          });
         this.app.use(this.routes);
     }
     private configureErrorHandling() {

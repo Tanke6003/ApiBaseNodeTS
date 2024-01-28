@@ -13,5 +13,5 @@ export const envs = {
   MSSQL_USER: get('MSSQL_SA_USER').required().asString(),
   MSSQL_PASSWORD: get('MSSQL_SA_PASSWORD').required().asString(),
   JWT_SECRET: get('JWT_SECRET').required().asString(),
-  JWT_EXPIRES: get('JWT_EXPIRES').required().asString(),
+  JWT_EXPIRED: get('JWT_EXPIRED').required().asString(),
 };

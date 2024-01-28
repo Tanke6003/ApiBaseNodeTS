@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { UserServices } from '../../application/services/user.service';
+import { UserDTO } from "../../application/dtos/user.dto.interface";
 
 export class UserController{
 
@@ -11,7 +12,7 @@ export class UserController{
 
     getAllUsers = async(req: Request, res: Response) => {
         try {
-            const users = await this.userServices.getAllUsers();
+            const users:UserDTO[] = await this.userServices.getAllUsers();
             res.json(users);
         } catch (error) {
             console.error(error);
@@ -19,7 +20,7 @@ export class UserController{
         }
     }
     getUserById = async(req: Request, res: Response) =>{
-        const userId = req.params.id;
+        const userId:number = Number(req.params.id);
     
         try {
             const user = await this.userServices.getUserByID(Number(userId));
@@ -35,12 +36,24 @@ export class UserController{
         }
     }
     createUser = async(req: Request, res: Response) =>{
-        const bodyreq = req.body;
+        const bodyreq:UserDTO = req.body;
         try {
             const result = await this.userServices.createUser(bodyreq)
             if(!result)
                 throw new Error("No se pudo registrar al usuario")
             return res.status(200).send();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: error});
+        }
+    }
+    updateUser = async(req: Request, res: Response) =>{
+        const bodyreq:UserDTO = req.body;
+        try {
+            const result = await this.userServices.updateUser(bodyreq)
+            if(!result)
+                throw new Error("No se pudo actualizar al usuario")
+            return res.status(200).json(result);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: error});
