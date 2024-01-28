@@ -32,9 +32,9 @@ services:
     ports:
       - "1434:1433"
     environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=SECRETPASS1!
-      - MSSQL_PID=Developer #Evaluation #Express #Standard #Enterprise #EnterpriseCore #BusinessIntelligence #EnterpriseEvaluation
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_PID: Developer #Evaluation #Express #Standard #Enterprise #EnterpriseCore #BusinessIntelligence #EnterpriseEvaluation
     volumes:
       - ./sql:/var/opt/mssql/data
 

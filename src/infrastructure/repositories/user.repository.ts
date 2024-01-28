@@ -1,6 +1,6 @@
-import { User } from '../dominio/models/user.interface';
-import { IDBConnection } from "../dominio/interfaces/IDBConnection.interface";
-import { IUsersDataSource } from '../dominio/interfaces/IUserDataSource.interface';
+import { User } from '../../dominio/models/user.interface';
+import { IDBConnection } from "../../dominio/interfaces/IDBConnection.interface";
+import { IUsersDataSource } from '../../dominio/interfaces/IUserDataSource.interface';
 
 export class UserRepository {
     private datasources: IUsersDataSource[] = [];

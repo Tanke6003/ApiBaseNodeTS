@@ -36,8 +36,6 @@ export class UserController{
     }
     createUser = async(req: Request, res: Response) =>{
         const bodyreq = req.body;
-        console.log(bodyreq)
-    
         try {
             const result = await this.userServices.createUser(bodyreq)
             if(!result)

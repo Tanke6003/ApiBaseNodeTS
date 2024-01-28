@@ -1,11 +1,10 @@
+import { IDBConnection } from "../../dominio/interfaces/IDBConnection.interface";
 import { IUsersDataSource } from "../../dominio/interfaces/IUserDataSource.interface";
 import { User } from "../../dominio/models/user.interface";
-import { MariaDBConnection } from "../config/mariadb.connection";
-
 
 export class UserMariaDBDataSource implements IUsersDataSource {
-  private db: MariaDBConnection;
-    constructor(db: MariaDBConnection) {
+  private db: IDBConnection;
+    constructor(db: IDBConnection) {
         this.db = db;
     }
     async getAllUsers() {

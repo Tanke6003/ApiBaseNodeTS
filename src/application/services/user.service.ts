@@ -1,4 +1,4 @@
-import { UserRepository } from '../../infrastructure/user.repository';
+import { UserRepository } from '../../infrastructure/repositories/user.repository';
 import { UserDTO } from '../DTOs/user.DTO.interface';
 import { User } from '../../dominio/models/user.interface';
 

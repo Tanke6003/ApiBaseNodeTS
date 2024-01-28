@@ -10,7 +10,7 @@ export interface SequelizeConnectionConfig {
     database: string;
 }
 
-export class MariaDBConnection  implements IDBConnection {
+export class SequelizeConnection  implements IDBConnection {
     private connection: Sequelize;
 
     constructor(config: SequelizeConnectionConfig) {
