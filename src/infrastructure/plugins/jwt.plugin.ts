@@ -6,7 +6,7 @@ export class JWT implements IJWTPlugin {
 
     constructor() {
     }
-    CreateToken(options:JWTOptions) {
+    CreateToken(options:JWTOptions):string {
         try{
             const token = jwt.sign(options, envs.JWT_SECRET, { expiresIn: envs.JWT_EXPIRED });
             return token;
@@ -15,7 +15,7 @@ export class JWT implements IJWTPlugin {
             throw new Error(`Error executing query: ${error.message}`);
         }
     }
-    VerifyToken(token:string) {
+    VerifyToken(token:string):boolean {
         try{
             const decoded = jwt.verify(token, envs.JWT_SECRET);
             
@@ -26,7 +26,7 @@ export class JWT implements IJWTPlugin {
             return false;
         }
     }
-    RerefreshToken() {
+    RerefreshToken():string {
         return "token";
     }
 

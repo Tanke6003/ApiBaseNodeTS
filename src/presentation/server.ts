@@ -39,9 +39,7 @@ export class Server{
     
         const swaggerSpec = swaggerJsdoc(options);
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-      }
-    
-
+      }  
     private configureRoutes() {
         const routerModule = new RouterModule();
         this.routes = routerModule.getRoutes();

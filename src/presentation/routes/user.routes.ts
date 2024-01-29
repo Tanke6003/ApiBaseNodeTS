@@ -50,6 +50,7 @@ class UserModule {
      *     responses:
      *       200:
      *         description: Successful response
+     *
      */
     this.router.get("/users", this.userController.getAllUsers);
     /**
@@ -68,6 +69,8 @@ class UserModule {
      *     responses:
      *       200:
      *         description: Successful response
+     *       404:
+     *          description: User Not Found
      */
     this.router.get("/users/:id", this.userController.getUserById);
     /**

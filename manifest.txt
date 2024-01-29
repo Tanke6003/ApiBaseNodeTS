@@ -1,4 +1,0 @@
-GET -> /users
-GET -> /users/:id
-POST -> /users/create-user
-undefined -> undefined
