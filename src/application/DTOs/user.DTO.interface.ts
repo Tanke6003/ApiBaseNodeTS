@@ -4,5 +4,6 @@ export interface UserDTO{
     name:string;
     email:string;
     password:string;
-    birthdate:Date;
+    birthDate:Date;
+    available:boolean;
 }

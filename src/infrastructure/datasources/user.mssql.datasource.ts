@@ -24,5 +24,8 @@ export class UserMSSQLDataSource implements IUsersDataSource {
         const result = await this.db.executeQuery(query, [user.name]);
         return result;
     }
+     async updateUser(user: User): Promise<User | null> {
+        throw new Error("method not implemented")
+    }
 }
 

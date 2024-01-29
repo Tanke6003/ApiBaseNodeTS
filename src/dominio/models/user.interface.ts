@@ -1,8 +1,9 @@
 
 export interface User{
-    UserId:number;
+    userId:number;
     name:string;
     email:string;
     password:string;
-    birthdate:Date;
+    birthDate:Date;
+    available:boolean;
 }

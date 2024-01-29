@@ -45,3 +45,5 @@ export class SequelizeConnection  implements IDBConnection {
         console.log('Database connection closed.');
     }
 }
+
+

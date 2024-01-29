@@ -85,14 +85,26 @@ class UserModule {
      *           schema:
      *             type: object
      *             properties:
-     *               name:
-     *                 type: string
-     *                 description: Name of the user
-     *                 example: 'John'
      *               id:
      *                 type: integer
      *                 description: ID of the user
      *                 example: 1
+     *               name:
+     *                 type: string
+     *                 description: Name of the user
+     *                 example: 'John'
+     *               email:
+     *                 type: string
+     *                 description: Email of the user
+     *                 example: 'john@example.com'
+     *               password:
+     *                 type: string
+     *                 description: Password of the user
+     *                 example: 'pass123'
+     *               birthDate:
+     *                  type: Date
+     *                  description: BirthDate of the user
+     *                  example: '1999-03-10'
      *     responses:
      *       200:
      *         description: Successful response
@@ -111,14 +123,26 @@ class UserModule {
      *           schema:
      *             type: object
      *             properties:
-     *               name:
-     *                 type: string
-     *                 description: Name of the user
-     *                 example: 'John'
      *               id:
      *                 type: integer
      *                 description: ID of the user
      *                 example: 1
+     *               name:
+     *                 type: string
+     *                 description: Name of the user
+     *                 example: 'John'
+     *               email:
+     *                 type: string
+     *                 description: Email of the user
+     *                 example: 'john@example.com'
+     *               password:
+     *                 type: string
+     *                 description: Password of the user
+     *                 example: 'pass123'
+     *               birthDate:
+     *                  type: Date
+     *                  description: BirthDate of the user
+     *                  example: '1999-03-10'
      *     responses:
      *       200:
      *         description: Successful response
