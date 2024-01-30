@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { envs } from "../../infrastructure/plugins/envs.plugin";
+import { envs } from "../../application/plugins/envs.plugin";
 import { UserController } from "../controllers/user.controller";
 import { UserRepository } from "../../infrastructure/repositories/user.repository";
 import { UserServices } from "../../application/services/user.service";
 import { UserMariaDBDataSource } from "../../infrastructure/datasources/user.mariadb.datasource";
 import { IUsersDataSource } from "../../dominio/interfaces/IUserDataSource.interface";
-import { SequelizeConnection } from "../../infrastructure/plugins/sequelize.plugin";
+import { SequelizeConnection } from "../../application/plugins/sequelize.plugin";
 
 class UserModule {
   private router: Router;

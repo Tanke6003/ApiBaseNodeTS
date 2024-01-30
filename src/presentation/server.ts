@@ -18,14 +18,14 @@ export class Server{
         this.createSwaggerSpec();
     }
 
-    private configureMiddleware(){
+    private configureMiddleware():void{
         this.app.use(express.json());
         this.app.use(cors());
         this.app.use(express.urlencoded({extended:false}));
         this.app.use(express.static('public'));
     }
 
-    private createSwaggerSpec() {
+    private createSwaggerSpec():void{
         const options = {
           definition: {
             openapi: '3.0.0',
@@ -40,7 +40,7 @@ export class Server{
         const swaggerSpec = swaggerJsdoc(options);
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
       }  
-    private configureRoutes() {
+    private configureRoutes():void{
         const routerModule = new RouterModule();
         this.routes = routerModule.getRoutes();
         this.app.get('/', (req: Request, res: Response) => {
@@ -48,7 +48,7 @@ export class Server{
           });
         this.app.use(this.routes);
     }
-    private configureErrorHandling() {
+    private configureErrorHandling():void{
         this.app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
             console.error(err.stack);
             res.status(500).send('Something went wrong!');
