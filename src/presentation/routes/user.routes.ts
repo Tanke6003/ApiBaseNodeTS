@@ -5,13 +5,14 @@ import { UserRepository } from "../../infrastructure/repositories/user.repositor
 import { UserServices } from "../../application/services/user.service";
 import { UserMariaDBDataSource } from "../../infrastructure/datasources/user.mariadb.datasource";
 import { SequelizeConnection } from "../../application/plugins/sequelize.plugin";
+import { IJWTPlugin } from "../../dominio/interfaces/IJWTPlugin.interfaces";
+import { JWT } from "../../application/plugins/jwt.plugin";
+
 
 class UserModule {
   private router: Router;
-  private userRepository: UserRepository;
-  private userServices: UserServices;
   private userController: UserController;
-
+  private jwtMiddleware : IJWTPlugin
   constructor(router: Router) {
     this.router = router;
     const dbmariadb = new SequelizeConnection({
@@ -31,23 +32,29 @@ class UserModule {
     //   database: envs.DB_NAME
     // });
     const userDataSource = new UserMariaDBDataSource(dbmariadb);
-    this.userRepository = new UserRepository(userDataSource);
-    this.userServices = new UserServices(this.userRepository);
-    this.userController = new UserController(this.userServices);
+    const userRepository = new UserRepository(userDataSource);
+    const  userServices = new UserServices(userRepository);
+    this.userController = new UserController(userServices);
+    this.jwtMiddleware = new JWT();
     this.setRoutes();
   }
   getRoutes() {
+
     return this.router;
   }
   setRoutes() {
+
+
     /**
      * @swagger
      * /users:
      *   get:
      *     description: Get all users
+     *     tags: [Users]
      *     responses:
      *       200:
      *         description: Successful response
+     *  
      *
      */
     this.router.get("/users", this.userController.getAllUsers);
@@ -56,6 +63,7 @@ class UserModule {
      * /users/{id}:
      *   get:
      *     description: Get user by id
+     *     tags: [Users]
      *     parameters:
      *       - in: path
      *         name: id
@@ -76,6 +84,7 @@ class UserModule {
      * /users/create-user:
      *   post:
      *     description: Create user
+     *     tags: [Users]
      *     requestBody:
      *       required: true
      *       content:
@@ -113,39 +122,23 @@ class UserModule {
      * @swagger
      * /users/update-user:
      *   put:
-     *     description: Update user
+     *     security:
+     *       - bearerAuth: []
+     *     description: Update user information
+     *     tags: [Users]
      *     requestBody:
      *       required: true
      *       content:
      *         application/json:
      *           schema:
-     *             type: object
-     *             properties:
-     *               id:
-     *                 type: integer
-     *                 description: ID of the user
-     *                 example: 1
-     *               name:
-     *                 type: string
-     *                 description: Name of the user
-     *                 example: 'John'
-     *               email:
-     *                 type: string
-     *                 description: Email of the user
-     *                 example: 'john@example.com'
-     *               password:
-     *                 type: string
-     *                 description: Password of the user
-     *                 example: 'pass123'
-     *               birthDate:
-     *                  type: Date
-     *                  description: BirthDate of the user
-     *                  example: '1999-03-10'
+     *             $ref: '#/components/schemas/UserDTO'
      *     responses:
      *       200:
      *         description: Successful response
      */
-    this.router.put("/users/update-user", this.userController.updateUser);
+   this.router.put("/users/update-user", this.jwtMiddleware.validateAccess, this.userController.updateUser);
+
+
   }
 }
 

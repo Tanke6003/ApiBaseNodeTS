@@ -3,7 +3,7 @@ import cors from 'cors';
 import { RouterModule } from './routes/index.routes';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-
+import { envs } from '../application/plugins/envs.plugin';
 
 export class Server{
     private app = express();
@@ -25,16 +25,30 @@ export class Server{
     }
 
     private createSwaggerSpec():void{
-        const options = {
-          definition: {
-            openapi: '3.0.0',
-            info: {
-              title: 'Test API',
-              version: '0.0.1',
+      const routesPath ='./src/presentation/routes/*.ts';
+      const dtosPath = './src/application/dtos/*.ts';
+      const options: swaggerJsdoc.Options = {
+        definition: {
+          openapi: '3.1.0',
+          info: {
+            title: 'Test API',
+            version: envs.API_VERSION,
+            description: 'lorem in',
+          },
+          components: {
+            securitySchemes: {
+              bearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+              },
             },
           },
-          apis: ['./src/presentation/routes/*.ts'],
-        };
+          security: [{ bearerAuth: [] }],
+        },
+        apis: [routesPath, dtosPath],
+      };
+      
     
         const swaggerSpec = swaggerJsdoc(options);
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

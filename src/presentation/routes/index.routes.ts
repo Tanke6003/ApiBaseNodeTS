@@ -12,6 +12,12 @@ class RouterModule{
     this.setRoutes();
   }
   setRoutes(){
+  /**
+   * @swagger
+   * tags:
+   *   name: Users
+   *   description: Operaciones relacionadas con usuarios
+   */
     const userModule = new UserModule(this.router);
     this.routes.push(userModule.getRoutes());
 

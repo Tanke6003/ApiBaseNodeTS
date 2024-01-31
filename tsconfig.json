@@ -11,7 +11,8 @@
     "noUnusedParameters": true,
     "strictBindCallApply": true,
     "noUnusedLocals": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "types": ["express", "node"]
   },
   "include": [
     "src/**/*.ts",
