@@ -19,7 +19,9 @@ export class JWT implements IJWTPlugin {
         try{
             const decoded = jwt.verify(token, envs.JWT_SECRET);
             
-            return true;
+            if(decoded)
+                return true;
+            throw new Error("");    
         }
         catch(error:any){
             throw new Error(`Error executing query: ${error.message}`);

@@ -1,7 +1,5 @@
 import { User } from '../../dominio/models/user.interface';
-import { IDBConnection } from "../../dominio/interfaces/IDBConnection.interface";
 import { IUsersDataSource } from '../../dominio/interfaces/IUserDataSource.interface';
-import { UserDTO } from '../../application/dtos/user.dto.interface';
 
 export class UserRepository {
 

@@ -10,7 +10,7 @@ export class UserController{
         this.userServices= userServices
     }
 
-    getAllUsers = async(req: Request, res: Response) => {
+    getAllUsers = async(_req: Request, res: Response) => {
         try {
             const users:UserDTO[] = await this.userServices.getAllUsers();
             res.json(users);
@@ -44,7 +44,7 @@ export class UserController{
             return res.status(200).send();
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: error});
+            return res.status(500).json({ error: error});
         }
     }
     updateUser = async(req: Request, res: Response) =>{
@@ -56,7 +56,7 @@ export class UserController{
             return res.status(200).json(result);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: error});
+            return res.status(500).json({ error: error});
         }
     }
     

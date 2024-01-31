@@ -42,13 +42,13 @@ export class Server{
     private configureRoutes():void{
         const routerModule = new RouterModule();
         this.routes = routerModule.getRoutes();
-        this.app.get('/', (req: Request, res: Response) => {
+        this.app.get('/', (_req: Request, res: Response) => {
             res.redirect('/api-docs');
           });
         this.app.use(this.routes);
     }
     private configureErrorHandling():void{
-        this.app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
+        this.app.use(async (err: Error, _req: Request, res: Response, _next: NextFunction) => {
             console.error(err.stack);
             res.status(500).send('Something went wrong!');
         });

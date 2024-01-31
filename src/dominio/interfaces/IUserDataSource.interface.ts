@@ -1,4 +1,3 @@
-import { UserDTO } from "../../application/dtos/user.dto.interface";
 import { User } from "../models/user.interface";
 
 export interface IUsersDataSource {

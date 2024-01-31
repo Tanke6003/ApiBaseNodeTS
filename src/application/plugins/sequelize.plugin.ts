@@ -33,7 +33,7 @@ export class SequelizeConnection  implements IDBConnection {
             const queryOptions: QueryOptions = {
                 replacements: parameters,
             };
-            const [results, metadata] = await this.connection.query(query, queryOptions);
+            const [results,_] = await this.connection.query(query, queryOptions);
             return results;
         } catch (error:any) {
             throw new Error(`Error executing query: ${error.message}`);
