@@ -1,7 +1,6 @@
 import express, {  Request, Response, NextFunction, Router } from 'express';
 import cors from 'cors';
 import { RouterModule } from './routes/index.routes';
-import { writeFileSync } from 'fs';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
