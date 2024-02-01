@@ -1,29 +1,18 @@
 // envs.plugin.test.ts
 
-import 'dotenv/config';
-
-
+import * as dotenv from 'dotenv';
 import { envs } from '../../../src/application/plugins/envs.plugin';
 
+// Asegúrate de que las variables de entorno estén cargadas antes de las pruebas
+beforeAll(() => {
+  dotenv.config({ path: '.env.test' });
+});
+
 describe('Environment Variables', () => {
-  // Configura las variables de entorno para las pruebas
-  beforeAll(() => {
-    // Este bloque se ejecuta antes de todas las pruebas
-    process.env.PORT = '3000'; // Define un valor para PORT para las pruebas
-    // Puedes definir otros valores para otras variables aquí
-  });
-
-  afterAll(() => {
-    // Este bloque se ejecuta después de todas las pruebas
-    delete process.env.PORT; // Limpia la variable de entorno después de las pruebas
-    // Puedes limpiar otras variables aquí si es necesario
-  });
-
   it('should have a valid PORT', () => {
     expect(envs.PORT).toBeDefined();
     expect(envs.PORT).toBe(3000);
   });
-
 
   // Pruebas adicionales basadas en tu código original
   test('should contain basic info in envs', () => {

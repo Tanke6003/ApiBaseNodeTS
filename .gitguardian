@@ -1,0 +1,5 @@
+# .gitguardian
+
+exclude:
+  - file: .env.test
+  - file: .env.template

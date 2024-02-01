@@ -1,4 +1,4 @@
-import { Router } from "express";
+  import { Router } from "express";
 import { envs } from "../../application/plugins/envs.plugin";
 import { UserController } from "../controllers/user.controller";
 import { UserRepository } from "../../infrastructure/repositories/user.repository";
