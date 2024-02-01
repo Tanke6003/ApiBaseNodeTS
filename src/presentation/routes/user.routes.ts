@@ -12,7 +12,7 @@ import { JWT } from "../../application/plugins/jwt.plugin";
 class UserModule {
   private router: Router;
   private userController: UserController;
-  private jwtMiddleware : IJWTPlugin
+  private jwtMiddleware : IJWTPlugin;
   constructor(router: Router) {
     this.router = router;
     const dbmariadb = new SequelizeConnection({
@@ -90,28 +90,7 @@ class UserModule {
      *       content:
      *         application/json:
      *           schema:
-     *             type: object
-     *             properties:
-     *               id:
-     *                 type: integer
-     *                 description: ID of the user
-     *                 example: 1
-     *               name:
-     *                 type: string
-     *                 description: Name of the user
-     *                 example: 'John'
-     *               email:
-     *                 type: string
-     *                 description: Email of the user
-     *                 example: 'john@example.com'
-     *               password:
-     *                 type: string
-     *                 description: Password of the user
-     *                 example: 'pass123'
-     *               birthDate:
-     *                  type: Date
-     *                  description: BirthDate of the user
-     *                  example: '1999-03-10'
+     *             $ref: '#/components/schemas/UserDTO'
      *     responses:
      *       200:
      *         description: Successful response

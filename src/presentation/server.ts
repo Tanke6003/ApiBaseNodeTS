@@ -29,12 +29,13 @@ export class Server{
       const dtosPath = './src/application/dtos/*.ts';
       const options: swaggerJsdoc.Options = {
         definition: {
-          openapi: '3.1.0',
+          openapi: '3.0.0',
           info: {
             title: 'Test API',
             version: envs.API_VERSION,
             description: 'lorem in',
           },
+         
           components: {
             securitySchemes: {
               bearerAuth: {
