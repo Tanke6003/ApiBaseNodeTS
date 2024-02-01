@@ -1,4 +1,4 @@
-import { NUMBER } from 'sequelize';
+
 import { envs } from '../../../src/application/plugins/envs.plugin';
 
 describe("envs", () => {
