@@ -12,11 +12,11 @@
     "strictBindCallApply": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
-    "types": ["express", "node"]
+    "types": ["express", "node","jest"]
   },
   "include": [
     "src/**/*.ts",
-    //"tests/**/*.ts"
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
