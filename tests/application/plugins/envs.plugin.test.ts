@@ -6,6 +6,7 @@ import { envs } from '../../../src/application/plugins/envs.plugin';
 // Asegúrate de que las variables de entorno estén cargadas antes de las pruebas
 beforeAll(() => {
   dotenv.config({ path: './.env.test' });
+  console.log(envs);
 });
 
 describe('Environment Variables', () => {
