@@ -1,0 +1,19 @@
+name: On push stg
+
+on:
+  push:
+    branches:
+      - stg
+
+jobs:
+  push_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Push to Test Branch
+        if: github.event_name == 'push' && github.event.ref == 'refs/heads/stg'
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout -B test origin/test || git checkout -b test
+          git push origin test
