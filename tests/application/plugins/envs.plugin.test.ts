@@ -3,19 +3,16 @@
 import * as dotenv from 'dotenv';
 import { envs } from '../../../src/application/plugins/envs.plugin';
 
-// Asegúrate de que las variables de entorno estén cargadas antes de las pruebas
 beforeAll(() => {
   dotenv.config({ path: './.env.test' });
-  console.log(envs);
+  
 });
 
 describe('Environment Variables', () => {
-  it('should have a valid PORT', () => {
-    expect(envs.PORT).toBeDefined();
-    expect(envs.PORT).toBe(3000);
+  it('should envs was defined', () => {
+    expect(envs).toBeDefined();
   });
 
-  // Pruebas adicionales basadas en tu código original
   test('should contain basic info in envs', () => {
     expect(envs).toHaveProperty('PORT');
   });

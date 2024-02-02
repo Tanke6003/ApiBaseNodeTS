@@ -17,9 +17,9 @@
   },
   "include": [
     "src/**/*.ts",
-    "tests/**/*.ts"
   ],
   "exclude": [
+    "tests",
     "node_modules",
     "coverage",
     "dist"

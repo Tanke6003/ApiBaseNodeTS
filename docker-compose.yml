@@ -25,6 +25,7 @@ services:
       - "8080:80"
     depends_on:
       - mariadb
+
   sql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: mssql
@@ -34,10 +35,14 @@ services:
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
-      MSSQL_PID: Developer #Evaluation #Express #Standard #Enterprise #EnterpriseCore #BusinessIntelligence #EnterpriseEvaluation
+      MSSQL_PID: Developer #Evaluation #Express #Standard #Enterprise 
     volumes:
       - ./sql:/var/opt/mssql/data
 
+  smtp:
+    image: namshi/smtp
+    ports:
+      - "1025:25"  # Map container's SMTP port to host machine
 
 volumes:
   mariadb_data:

@@ -4,6 +4,7 @@ import { RouterModule } from './routes/index.routes';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { envs } from '../application/plugins/envs.plugin';
+//import { MailService } from './mail';
 
 export class Server{
     private app = express();
@@ -15,6 +16,8 @@ export class Server{
         this.configureRoutes();
         this.configureErrorHandling();
         this.createSwaggerSpec();
+        //const mailService = new MailService();
+        //mailService.sendMail('Ruben.Farias.1999@Outlook.es', 'Asunto del Correo', 'Cuerpo del Correo');
     }
 
     private configureMiddleware():void{

@@ -31,7 +31,6 @@ describe('SequelizeConnection', () => {
 
     await expect(sequelizeConnection.authenticate()).resolves.toBeTruthy();
 
-    // Verificar que el método authenticate se llamó una vez
     // @ts-ignore
     expect(SequelizeConnection.mock.instances[0].authenticate).toHaveBeenCalledTimes(1);
   });

@@ -1,35 +1,35 @@
-name: On push stg
+# name: On push stg
 
-on:
-  push:
-    branches:
-      - stg
+# on:
+#   push:
+#     branches:
+#       - stg
 
-jobs:
-  push_test:
-    runs-on: ubuntu-latest
+# jobs:
+#   push_test:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
 
-      - name: Set up Git credentials
-        run: |
-          git config user.name "Tanke6003"
-          git config user.email "Tanke6003@users.noreply.github.com"
-          echo -n "${{ secrets.GIT_PASSWORD }}" > git-credentials
-          git config credential.helper "store --file=git-credentials"
+#       - name: Set up Git credentials
+#         run: |
+#           git config user.name "Tanke6003"
+#           git config user.email "Tanke6003@users.noreply.github.com"
+#           //echo -n "${{ secrets.GIT_PASSWORD }}" > git-credentials
+#           git config credential.helper "store --file=git-credentials"
 
-      - name: Debug Repository State
-        run: |
-          git status
-          git branch
-          git remote -v
+#       - name: Debug Repository State
+#         run: |
+#           git status
+#           git branch
+#           git remote -v
 
-      - name: Push to Test Branch
-        if: github.event_name == 'push' && github.event.ref == 'refs/heads/stg'
-        run: |
-          git fetch origin test:refs/remotes/origin/test
-          git checkout -B test origin/test || git checkout -b test
-          git push origin test
+#       - name: Push to Test Branch
+#         //if: github.event_name == 'push' && github.event.ref == 'refs/heads/stg'
+#         run: |
+#           git fetch origin test:refs/remotes/origin/test
+#           git checkout -B test origin/test || git checkout -b test
+#           git push origin test
 
