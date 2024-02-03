@@ -1,12 +1,12 @@
-import { IDBConnection } from "../../dominio/interfaces/IDBConnection.interface";
+import { ISQLConnection } from "../../dominio/interfaces/plugins/ISQLConnection.interface";
 import { IUsersDataSource } from "../../dominio/interfaces/IUserDataSource.interface";
 import { User } from "../../dominio/models/user.interface";
 
 
 
 export class UserMSSQLDataSource implements IUsersDataSource {
-  private db: IDBConnection;
-    constructor(db: IDBConnection) {
+  private db: ISQLConnection;
+    constructor(db: ISQLConnection) {
         this.db = db;
     }
     async getAllUsers() {

@@ -1,8 +1,8 @@
 import { Response, Request } from "express";
-import { UserServices } from '../../application/services/user.service';
-import { UserDTO } from "../../application/dtos/user.dto.interface";
+import { UserServices } from '../../application/services/users.service';
+import { UserDTO } from "../../application/dtos/users.dto.interface";
 
-export class UserController{
+export class UsersController{
 
     public userServices:UserServices
 

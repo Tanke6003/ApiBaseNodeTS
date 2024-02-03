@@ -1,7 +1,7 @@
-import { User } from '../../dominio/models/user.interface';
-import { IUsersDataSource } from '../../dominio/interfaces/IUserDataSource.interface';
+import { User } from '../../../dominio/models/user.interface';
+import { IUsersDataSource } from '../../../dominio/interfaces/IUserDataSource.interface';
 
-export class UserRepository {
+export class UsersRepository {
 
     private datasource: IUsersDataSource;
 

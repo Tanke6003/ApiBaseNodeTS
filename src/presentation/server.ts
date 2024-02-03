@@ -4,7 +4,10 @@ import { RouterModule } from './routes/index.routes';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { envs } from '../application/plugins/envs.plugin';
-//import { MailService } from './mail';
+// import { MailOptions } from '../dominio/models/mailOptions.model';
+// import { MailService } from '../application/services/mail.service';
+// import { IMail } from '../dominio/interfaces/plugins/IMail.interface';
+// import { NodeMailer } from '../application/plugins/nodeMailer.plugin';
 
 export class Server{
     private app = express();
@@ -16,8 +19,17 @@ export class Server{
         this.configureRoutes();
         this.configureErrorHandling();
         this.createSwaggerSpec();
-        //const mailService = new MailService();
-        //mailService.sendMail('Ruben.Farias.1999@Outlook.es', 'Asunto del Correo', 'Cuerpo del Correo');
+        // const mailerConfig:MailOptions = {
+        //     service: envs.MAILER_SERVICE,
+        //     auth: {
+        //         user: envs.MAILER_EMAIL,
+        //         pass: envs.MAILER_SECRET_KEY
+        //     }
+
+        // };
+        // const IMailInstance: IMail = new NodeMailer(mailerConfig);
+        // const MailServiceInstance = new MailService(IMailInstance);
+        //MailServiceInstance.sendMail('Ruben.Farias.1999@outlook.es', 'Para Ruben farias', 'este es un correo informativo');
     }
 
     private configureMiddleware():void{

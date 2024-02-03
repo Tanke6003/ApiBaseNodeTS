@@ -1,4 +1,4 @@
-import { IJWTPlugin } from "../../dominio/interfaces/IJWTPlugin.interfaces";
+import { IJWTPlugin } from "../../dominio/interfaces/plugins/IAuthToken.interface";
 import { JWTOptions } from "../../dominio/models/jwt.interfaces";
 import jwt from "jsonwebtoken";
 import { envs } from "./envs.plugin";

@@ -1,7 +1,7 @@
 // index.ts
 
 import { Router } from "express";
-import { UserModule } from "./user.routes";
+import { UserModule } from "./users.routes";
 import { AuthModule } from "./auth.routes";
 
 class RouterModule {

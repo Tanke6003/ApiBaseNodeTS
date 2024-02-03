@@ -1,13 +1,13 @@
-import { UserRepository } from '../../infrastructure/repositories/user.repository';
-import { UserDTO } from '../dtos/user.dto.interface';
+import { UsersRepository } from '../../infrastructure/repositories/users/users.repository';
+import { UserDTO } from '../dtos/users.dto.interface';
 import { User } from '../../dominio/models/user.interface';
 
 
 export class UserServices{
 
     
-    private userRepository:UserRepository
-    constructor(userRepository:UserRepository){
+    private userRepository:UsersRepository
+    constructor(userRepository:UsersRepository){
         this.userRepository = userRepository
     }
 

@@ -1,4 +1,4 @@
-import { JWTOptions } from "../models/jwt.interfaces";
+import { JWTOptions } from "../../models/jwt.interfaces";
 import { NextFunction, Request,Response, } from "express";
 export interface IJWTPlugin{
     CreateToken(options:JWTOptions):string|void;
