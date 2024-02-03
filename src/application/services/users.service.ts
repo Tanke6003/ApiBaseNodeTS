@@ -68,26 +68,27 @@ export class UserServices{
     mapUsersToUserDTOs(users:User[]):UserDTO[]{
 
         const usersDTO = users.map((user)=>{
-            const  userDto:UserDTO = {id:user.userId,name:user.name,email:user.email,password:user.password,birthDate:user.birthDate,available:user.available};
+            const  userDto:UserDTO = {id:user.userId,firstName:user.name,lastName:user.name,nickName:user.name,email:user.email,password:user.password,birthDate:user.birthDate,available:user.available};
             return userDto;
         });
 
         return usersDTO;
     }
+    mapUserToUserDTO(user:User):UserDTO{
+        const  userDto:UserDTO = {id:user.userId,firstName:user.name,lastName:user.name,nickName:user.name,email:user.email,password:user.password,birthDate:user.birthDate,available:user.available};
+        return userDto;
+    }
     mapUserDTOsToUsers(usersDTO:UserDTO[]):User[]{
         const users = usersDTO.map((userDto)=>{
-            const  user:User = {userId:userDto.id,name:userDto.name,email:userDto.email,password:userDto.password,birthDate:userDto.birthDate,available:userDto.available};
+            const  user:User = {userId:userDto.id,name:userDto.firstName,email:userDto.email,password:userDto.password,birthDate:userDto.birthDate,available:userDto.available};
             return user;
         });
 
         return users;
     }
-    mapUserToUserDTO(user:User):UserDTO{
-        const  userDto:UserDTO = {id:user.userId,name:user.name,email:user.email,password:user.password,birthDate:user.birthDate,available:user.available};
-        return userDto;
-    }
+    
     mapUserDTOToUser(userDto:UserDTO):User{
-        const  user:User = {userId:userDto.id,name:userDto.name,email:userDto.email,password:userDto.password,birthDate:userDto.birthDate,available : userDto.available};
+        const  user:User = {userId:userDto.id,name:userDto.firstName,email:userDto.email,password:userDto.password,birthDate:userDto.birthDate,available : userDto.available};
         return user;
     }
 

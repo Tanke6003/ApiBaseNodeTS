@@ -50,7 +50,6 @@ export class Server{
             version: envs.API_VERSION,
             description: 'lorem in',
           },
-         
           components: {
             securitySchemes: {
               bearerAuth: {

@@ -10,10 +10,21 @@
  *           description: ID of the user
  *           example: 1
  *           required: true
- *         name:
+ *         firstName:
  *           type: string
  *           description: Name of the user
  *           example: 'John'
+ *           required: true
+ *         lastName:
+ *           type: string
+ *           description: Last name of the user
+ *           example: 'Doe'
+ *           required: true
+ *         nickName:
+ *           type: string
+ *           description: Nickname of the user
+ *           example: 'johndoe'
+ *           required: true
  *         email:
  *           type: string
  *           description: Email of the user
@@ -33,7 +44,9 @@
  */
 export interface UserDTO{
     id:number;
-    name:string;
+    firstName:string;
+    lastName:string;
+    nickName:string;
     email:string;
     password:string;
     birthDate:Date;
