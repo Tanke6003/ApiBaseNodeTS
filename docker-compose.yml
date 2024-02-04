@@ -39,10 +39,7 @@ services:
     volumes:
       - ./sql:/var/opt/mssql/data
 
-  smtp:
-    image: namshi/smtp
-    ports:
-      - "587:25"  # Map container's SMTP port to host machine
 
 volumes:
   mariadb_data:
+  sql:

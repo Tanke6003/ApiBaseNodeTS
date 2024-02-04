@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logs Viewer</h1>
+    <pre id="logs-container"></pre>
+    <br>
+    <select>
+        <option value="info">INFO</option>
+        <option value="error">ERROR</option>
+    </select>
+    <button onclick="fetchLogs()">Recargar Logs</button>
+
+    <script>
+        async function fetchLogs() {
+            try {
+                let level = document.querySelector('select').value;
+                const response = await fetch(`/logs/${level}`);  
+                let logs = await response.json();
+                logs = logs.map(log => `${log.level} - ${log.message}`);
+                document.getElementById('logs-container').textContent = logs.join('\n');
+            } catch (error) {
+                console.error('Error al recuperar los logs:', error);
+            }
+        }
+    
+        // Cargar logs al cargar la página
+        document.addEventListener('DOMContentLoaded', fetchLogs);
+    </script>
+</body>
+</html>

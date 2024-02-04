@@ -3,6 +3,7 @@
 import { Router } from "express";
 import { UserModule } from "./users.routes";
 import { AuthModule } from "./auth.routes";
+import { LogsRoutes } from "./logs.routes";
 
 class RouterModule {
   router: Router = Router();
@@ -28,6 +29,8 @@ class RouterModule {
      */
     const authModule = new AuthModule(this.router);
     this.routes.push(authModule.getRoutes());
+    const logsModule = new LogsRoutes(this.router);
+    this.routes.push(logsModule.getRouter());
   }
   getRoutes() {
     return this.routes;

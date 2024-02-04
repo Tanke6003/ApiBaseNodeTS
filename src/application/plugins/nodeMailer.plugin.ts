@@ -1,12 +1,20 @@
 import nodemailer from 'nodemailer'
 import { IMail } from '../../dominio/interfaces/plugins/IMail.interface';
 import { MailOptions } from '../../dominio/models/mailOptions.model';
+import { envs } from './envs.plugin';
 
 
 export class NodeMailer implements IMail{
   private transporter: nodemailer.Transporter;
 
-  constructor(mailerConfig: MailOptions) {
+  constructor() {
+    const mailerConfig:MailOptions = {
+          service: envs.MAILER_SERVICE,
+          auth: {
+              user: envs.MAILER_EMAIL,
+              pass: envs.MAILER_SECRET_KEY
+          }
+      };
     this.transporter = nodemailer.createTransport(mailerConfig);
   }
 

@@ -3,6 +3,7 @@ import { IMail } from "../../dominio/interfaces/plugins/IMail.interface";
 export class MailService {
     private mailPlugin: IMail;
     constructor(mailPlugin: IMail) {
+        
         this.mailPlugin = mailPlugin;
     }
     async sendMail(to: string, subject: string, text: string): Promise<void> {
