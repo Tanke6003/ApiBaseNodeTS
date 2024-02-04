@@ -5,3 +5,4 @@ dist/
 sql/
 mariadb_data/
 coverage/
+logs/
