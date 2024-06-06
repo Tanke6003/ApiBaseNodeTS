@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn --clear src/app.ts",
-    "build": "rimraf ./dist && tsc",
+    "build": "npm test && rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js",
     "test": "set NODE_ENV=test && jest --config='./jest.config.ts'",
     "test:watch": "jest --watch",
